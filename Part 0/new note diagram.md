@@ -14,7 +14,7 @@ deactivate server
 
 
 user->>browser: Enters the input
-user->>browser: Clicks save button
+user->>browser: Clicks save button to submit
 Note right of user: when the save button is clicked by user, the browser sends the input data to the server
 
 

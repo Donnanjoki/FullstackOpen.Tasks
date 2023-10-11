@@ -19,10 +19,18 @@ Note right of browser: fetch main.css
 browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
 Note right of browser: fetch spa.js
 
+browser->>user: Displays basic structure & styling no dynamic content
+Note left of browser: HTML & CSS Rendering
+
 browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
 Note right of browser: fetch spa.json: AJAX Request
 
-server-->>browser: Provide data.json
+server-->>browser: AJAX Response(JSON)
+Note right of browser: data.json
+
+browser->>user: Displays the list of notes
+Note right of browser: page is rendered after dynamic updates.
+
 
 
 ```
