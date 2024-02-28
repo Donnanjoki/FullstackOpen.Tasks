@@ -1,7 +1,12 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 // eslint-disable-next-line no-unused-vars
-import reactLogo from "./assets/react.svg";
-const statistics = (props) => {};
+import Statistics from "./Statistics";
+
+const Button = ({ handleClick, text }) => (
+  <button onClick={handleClick}>{text}</button>
+);
 
 const App = () => {
   // states for each feedback category and total count
@@ -21,28 +26,16 @@ const App = () => {
     setBad(bad + 1);
   };
 
-  // calculate total feedback, average score and positive percentage
-  const totalFeedback = good + neutral + bad;
-  // note: Average Score = (Number of Good Responses * 1 + Number of Neutral Responses * 0 + Number of Bad Responses * -1) / Total Number of Responses
-  const averageScore = (good - bad) / totalFeedback;
-
-  const positivePercentage = Math.round((good / totalFeedback) * 100);
-
   return (
     <div>
       <h1>Give Feedback</h1>
-      <button onClick={handleGoodClick}>Good</button>
-      <button onClick={handleNeutralClick}>Neutral</button>
-      <button onClick={handleBadClick}>Bad</button>
+      <Button handleClick={handleGoodClick} text="Good" />
+      <Button handleClick={handleNeutralClick} text="Neutral" />
+      <Button handleClick={handleBadClick} text="Bad" />
 
-      <h1>Statistics</h1>
-      <p>Good: {good} </p>
-      <p>Neutral: {neutral} </p>
-      <p> Bad: {bad} </p>
-      <p>Total Feedback: {totalFeedback}</p>
-      <p>Average Score: {averageScore}</p>
-      <p>positivePercentage: {positivePercentage}%</p>
+      <Statistics good={good} neutral={neutral} bad={bad} />
     </div>
   );
 };
+
 export default App;
