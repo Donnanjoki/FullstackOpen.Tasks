@@ -12,9 +12,40 @@ const App = () => {
     "The only way to go fast, is to go well.",
   ];
 
-  const [selected, setSelected] = useState(0);
+  const initialVotes = Array(anecdotes.length).fill(0);
 
-  return <div>{anecdotes[selected]}</div>;
+  const [selected, setSelected] = useState(0);
+  const [votes, setVotes] = useState(initialVotes);
+
+  const handleClick = () => {
+    const randomIndex = Math.floor(Math.random() * anecdotes.length);
+    setSelected(randomIndex);
+  };
+
+  const handleVote = () => {
+    const newVotes = [...votes];
+    newVotes[selected] += 1;
+    setVotes(newVotes);
+  };
+
+  // identify the index of the anecdote with max vote number
+
+  const maxVotesIndex = votes.indexOf(Math.max(...votes));
+
+  return (
+    <div>
+      <div>
+        <h1>Anecdote of the day</h1>
+        {anecdotes[selected]}
+        <p>Votes:{votes[selected]}</p>
+      </div>
+      <button onClick={handleVote}>Vote</button>
+      <button onClick={handleClick}>Next Anecdote</button>
+      <h1>Anecdote with most votes</h1>
+      {anecdotes[maxVotesIndex]}
+      <p>Most votes: {votes[maxVotesIndex]}</p>
+    </div>
+  );
 };
 
 export default App;
